@@ -1,0 +1,25 @@
+
+[submodule "git/detection/mmdetection"]
+	path = git/detection/mmdetection
+	url = https://github.com/open-mmlab/mmdetection
+[submodule "git/classification/pytorch-image-models"]
+	path = git/classification/pytorch-image-models
+	url = https://github.com/huggingface/pytorch-image-models
+[submodule "git/detection/yolo/yolov5"]
+	path = git/detection/yolo/yolov5
+	url = https://github.com/ultralytics/yolov5
+[submodule "git/detection/yolo/ultralytics"]
+	path = git/detection/yolo/ultralytics
+	url = https://github.com/ultralytics/ultralytics
+[submodule "git/detection/yolo/YOLOX"]
+	path = git/detection/yolo/YOLOX
+	url = https://github.com/Megvii-BaseDetection/YOLOX
+[submodule "git/detection3D/MMDetection3D"]
+	path = git/detection3D/MMDetection3D
+	url = https://github.com/open-mmlab/mmdetection3d
+[submodule "git/Paddle"]
+	path = git/Paddle
+	url = https://github.com/PaddlePaddle/Paddle
+[submodule "git/segmentation/mmsegmentation"]
+	path = git/segmentation/mmsegmentation
+	url = https://github.com/open-mmlab/mmsegmentation
