@@ -1,0 +1,26 @@
+#
+name: 系统监控
+# listener.yaml is a configuration file for the listener. It is used to
+
+interval: 5 # 监听器的 间隔时间 ，单位秒
+server_ip: 127.0.0.1 # 开启服务器
+server_port: 8089
+
+app:   # 监听器  监听器的作用是监听指定的程序是否启动，如果启动则自动启动指定的程序
+    - name: cloudmusic.exe
+      folder: C:\Program Files\NetEase\CloudMusic
+      delayed: 5 # 延时 5 秒启动
+      args: -d # 启动参数
+    - name: WeChat.exe
+      folder: C:\Program Files\Tencent\WeChat
+      delayed: 5
+      args: -d
+
+disk:  # 监听磁盘  监听磁盘的作用是当磁盘空间不足时，自动清理指定的文件夹
+    - path: D:\Program Files (x86)\Netease\CloudMusic\Cache
+      size: 100 # 单位 GB
+      clean: 10 # 单位 GB
+    - path: D:\Program Files (x86)\Tencent\WeChat\Cache
+      size: 100
+      clean: 10
+

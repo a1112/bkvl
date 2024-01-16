@@ -1,4 +1,6 @@
 import psutil
+from pathlib import Path
+import subprocess
 
 
 def pids():
@@ -6,11 +8,8 @@ def pids():
 
 
 def process_iter():
-    return [proc.as_dict(attrs=['pid', 'name', 'username']) for proc in psutil.process_iter()]
-
-
-def has_app(name):
-    return name in [proc.name() for proc in psutil.process_iter()]
+    return [proc.as_dict(attrs=['pid', 'name',
+                                "exe","cmdline","status","create_time","cwd"]) for proc in psutil.process_iter()]
 
 
 def kill_pid(pid):
@@ -18,6 +17,14 @@ def kill_pid(pid):
         return psutil.Process(pid).kill()
     else:
         return False
+
+
+def start_app(name,dir_path,args):
+    print(dir_path)
+    print(name)
+    print(args)
+    subprocess.Popen([str(Path(dir_path)/name),args])
+    return True
 
 
 if __name__ == '__main__':
