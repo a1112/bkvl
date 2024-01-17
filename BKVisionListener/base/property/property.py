@@ -29,4 +29,5 @@ class BaseProperty(object):
         self.listener_server_port = self.yaml_dict.get("server_port",8089)
         self.listener_app = self.yaml_dict.get("app",[])
         self.listener_disk = self.yaml_dict.get("disk",[])
+        self.maxDiskSize = self.yaml_dict.get("maxDiskSize",95)
         self.run_status = True

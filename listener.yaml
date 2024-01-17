@@ -16,11 +16,10 @@ app:   # 监听器  监听器的作用是监听指定的程序是否启动，如
       delayed: 5
       args: -d
 
+maxDiskSize: 95 # 当磁盘空间大于 95% 时，自动清理指定的文件夹
 disk:  # 监听磁盘  监听磁盘的作用是当磁盘空间不足时，自动清理指定的文件夹
-    - path: D:\Program Files (x86)\Netease\CloudMusic\Cache
-      size: 100 # 单位 GB
-      clean: 10 # 单位 GB
-    - path: D:\Program Files (x86)\Tencent\WeChat\Cache
-      size: 100
+    - path: D:\迅雷下载
       clean: 10
+    - path: D:\迅雷下载
+      clean: 95
 
