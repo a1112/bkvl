@@ -82,7 +82,10 @@ class DiskStates:
         disk_partitions = psutil.disk_partitions()
         disk_usages = {}
         for disk in disk_partitions:
-            diskDevice = psutil.disk_usage(disk.device)
+            try:
+                diskDevice = psutil.disk_usage(disk.device)
+            except:
+                continue
             diskDevice = {
                 "total": diskDevice.total,
                 "used": diskDevice.used,
@@ -155,30 +158,33 @@ class GpuStates:
 
     @property
     def gpu(self):
-        pynvml.nvmlInit()
-        deviceCount = pynvml.nvmlDeviceGetCount()
-        gpuList = []
-        for i in range(deviceCount):
-            handle = pynvml.nvmlDeviceGetHandleByIndex(i)
-            memory_info = pynvml.nvmlDeviceGetMemoryInfo(handle)
-            utilization = pynvml.nvmlDeviceGetUtilizationRates(handle)
-            gpuList.append({
-                "name": pynvml.nvmlDeviceGetName(handle),
-                "memory": {
-                    "total": memory_info.total,
-                    "used": memory_info.used,
-                    "free": memory_info.free
-                },
-                "utilization": {
-                    "gpu": utilization.gpu,
-                    "memory": utilization.memory
-                },
-                "temperature": pynvml.nvmlDeviceGetTemperature(handle, 0),
-                "power": pynvml.nvmlDeviceGetPowerUsage(handle) / 100,
-                "fan": pynvml.nvmlDeviceGetFanSpeed(handle)
-            })
-        pynvml.nvmlShutdown()
-        return gpuList
+        try:
+            pynvml.nvmlInit()
+            deviceCount = pynvml.nvmlDeviceGetCount()
+            gpuList = []
+            for i in range(deviceCount):
+                handle = pynvml.nvmlDeviceGetHandleByIndex(i)
+                memory_info = pynvml.nvmlDeviceGetMemoryInfo(handle)
+                utilization = pynvml.nvmlDeviceGetUtilizationRates(handle)
+                gpuList.append({
+                    "name": pynvml.nvmlDeviceGetName(handle),
+                    "memory": {
+                        "total": memory_info.total,
+                        "used": memory_info.used,
+                        "free": memory_info.free
+                    },
+                    "utilization": {
+                        "gpu": utilization.gpu,
+                        "memory": utilization.memory
+                    },
+                    "temperature": pynvml.nvmlDeviceGetTemperature(handle, 0),
+                    "power": pynvml.nvmlDeviceGetPowerUsage(handle) / 100,
+                    "fan": pynvml.nvmlDeviceGetFanSpeed(handle)
+                })
+            pynvml.nvmlShutdown()
+            return gpuList
+        except pynvml.nvml.NVMLError_LibraryNotFound:
+            return []
 
     def __dict__(self):
         return self.gpu
