@@ -1,6 +1,6 @@
 pypattyrn~=1.2
 
 pyyaml~=6.0.1
-torch~=2.1.0+cu121
+torch==2.2.0+cu121
 timm~=0.9.12
-tqdm~=4.65.2
+tqdm~=4.66.3
