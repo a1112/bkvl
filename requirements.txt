@@ -4,3 +4,4 @@ pyyaml~=6.0.1
 torch==2.2.0+cu121
 timm~=0.9.12
 tqdm~=4.66.3
+psutil>=5.9,<8

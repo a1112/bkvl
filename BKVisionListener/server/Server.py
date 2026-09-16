@@ -7,6 +7,8 @@ from BKVisionListener.states import app
 
 # 创建 FastAPI 应用
 app_ = FastAPI()
+from BKVisionListener.server.project_resource_monitor import attach_fastapi
+attach_fastapi(app_)
 
 
 # 定义路由
